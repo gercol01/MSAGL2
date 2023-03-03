@@ -63,6 +63,13 @@ namespace MSAGL2
             //iterate through the dictionary
             foreach (KeyValuePair<string, string> entry in TreeDataStructureString)
             {
+                //tidy up the parent
+                string[] parentArray = entry.Key.Split(new[] { '*' }, StringSplitOptions.RemoveEmptyEntries);
+
+                //getting the name of the key
+                string parentName = parentArray[0];
+
+
                 //if the node does not have children, there is no need for an edge
                 if (entry.Value != "")
                 {
@@ -73,17 +80,18 @@ namespace MSAGL2
                     foreach (string obj in objectsWithPreposition)
                     {
                         //split of the object from the preposition from the '-' character
-                        string[] finalObj = obj.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] finalObj = obj.Split(new[] { '*' }, StringSplitOptions.RemoveEmptyEntries);
 
                         //Add an edge to the graph
-                        graph.AddEdge(entry.Key, finalObj[0]).LabelText = finalObj[1];
+                        graph.AddEdge(parentName, finalObj[0]).LabelText = finalObj[2];
                     }
                 }
                 else
                 {
                     //if it has no children, only the node is created
-                    graph.AddNode(entry.Key);
+                    graph.AddNode(parentName);
                 }
+
             }
 
             //var n = graph.FindNode("Table");
@@ -106,7 +114,7 @@ namespace MSAGL2
             InitializeComponent();
             //TreeString = "[cube_1,]";
             //TreeString = "[Gerard,Chair-on|Book-under|Laptop-right_of]&[Chair,Box-left_of]&[Book,Cat-left_of|Mouse-behind|Stapler-infront]&[Laptop,Monitor-on]&[Box,Man-under]&[Cat ]&[Mouse,Cheese-on]&[Stapler,]&[Monitor,]&[Man,]&[Cheese,]";
-            TreeString = "[Gerard,Chair-on|Book-under|cube_1-right_of]&[cube_1,]";
+            TreeString = "[cube_1*0.0.0*null,cube_2*0.1.0*on]&[cube_2*0.1.0*on,]";
 
             viewer.UndoRedoButtonsVisible = false;
             viewer.EdgeInsertButtonVisible = false;
@@ -134,6 +142,13 @@ namespace MSAGL2
             //iterate through the dictionary
             foreach (KeyValuePair<string, string> entry in TreeDataStructureString)
             {
+                //tidy up the parent
+                string[] parentArray = entry.Key.Split(new[] { '*' }, StringSplitOptions.RemoveEmptyEntries);
+
+                //getting the name of the key
+                string parentName = parentArray[0];
+
+
                 //if the node does not have children, there is no need for an edge
                 if (entry.Value != "")
                 {
@@ -144,15 +159,15 @@ namespace MSAGL2
                     foreach (string obj in objectsWithPreposition)
                     {
                         //split of the object from the preposition from the '-' character
-                        string[] finalObj = obj.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] finalObj = obj.Split(new[] { '*' }, StringSplitOptions.RemoveEmptyEntries);
 
                         //Add an edge to the graph
-                        graph.AddEdge(entry.Key, finalObj[0]).LabelText = finalObj[1];
+                        graph.AddEdge(parentName, finalObj[0]).LabelText = finalObj[2];
                     }
                 }
                 else {
                     //if it has no children, only the node is created
-                    graph.AddNode(entry.Key);
+                    graph.AddNode(parentName);
                 }
                 
             }
