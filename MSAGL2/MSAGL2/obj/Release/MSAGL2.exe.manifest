@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAGL2.exe" size="23512">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAGL2.exe" size="89560">
       <assemblyIdentity name="MSAGL2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>49fSF65X385tBfcDgboEggiHmz2NyFvYIb7/lh5dQdg=</dsig:DigestValue>
+        <dsig:DigestValue>gE5xYLwzIE7bZ2avc9E8EQcHthI4mqM+h8pBSmG601g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
